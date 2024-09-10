@@ -1,0 +1,28 @@
+name: Release & Publish
+on: 
+  workflow_call:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        token: ${{ steps.app-token.outputs.token }}
+
+    - name: Checkout repository A to get templates
+      uses: actions/checkout@v4
+      with:
+        repository: poc-gh-actions/workflow
+        path: poc-gh-actions/workflow
+
+    - name: Send Teams Notification
+      if: steps.release.outcome == 'success'
+      env:
+        GITHUB_REPOSITORY: ${{ github.repository }}
+        RELEASE_VERSION: v1.0.0
+      run: |
+        envsubst < poc-gh-actions/workflow/.github/./templates/teams_template.json | curl -s -H 'Content-Type: application/json' \
+            -d @- \
+            ${{ secrets.TEAMS_WEBHOOK }}
