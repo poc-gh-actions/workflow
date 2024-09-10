@@ -17,7 +17,6 @@ jobs:
         path: poc-gh-actions/workflow
 
     - name: Send Teams Notification
-      if: steps.release.outcome == 'success'
       env:
         GITHUB_REPOSITORY: ${{ github.repository }}
         RELEASE_VERSION: v1.0.0
