@@ -1,0 +1,34 @@
+{
+    "@type": "MessageCard",
+    "summary": "New Release Available",
+    "themeColor": "0076D7",
+    "title": "🚀 New Release Published!",
+    "text": "A new release has been published for the **${GITHUB_REPOSITORY}** repository:\n\n**Version**: ${RELEASE_VERSION}\n\nPlease check the [release notes](https://github.com/${GITHUB_REPOSITORY}/releases/tag/${RELEASE_VERSION}) for detailed information on the changes and improvements. \n\n**Important**: Ensure that you update this dependency in your projects that use it. Pay special attention to any breaking changes and adapt your code accordingly.\n\nThank you!",
+    "sections": [
+      {
+        "facts": [
+          {
+            "name": "Repository",
+            "value": "${GITHUB_REPOSITORY}"
+          },
+          {
+            "name": "Version",
+            "value": "${RELEASE_VERSION}"
+          }
+        ]
+      }
+    ],
+    "potentialAction": [
+      {
+        "@type": "OpenUri",
+        "name": "View Release",
+        "targets": [
+          {
+            "os": "default",
+            "uri": "https://github.com/${GITHUB_REPOSITORY}/releases/tag/${RELEASE_VERSION}"
+          }
+        ]
+      }
+    ]
+  }
+  
