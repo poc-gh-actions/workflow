@@ -23,6 +23,6 @@ jobs:
         GITHUB_REPOSITORY: ${{ github.repository }}
         RELEASE_VERSION: v1.0.0
       run: |
-        envsubst < poc-gh-actions/workflow/.github/./templates/teams_template.json | curl -s -H 'Content-Type: application/json' \
+        envsubst < poc-gh-actions/workflow/.github/workflows/templates/teams_template.json | curl -s -H 'Content-Type: application/json' \
             -d @- \
             ${{ secrets.TEAMS_WEBHOOK }}
